@@ -9,3 +9,6 @@ export interface squareViewer {
   show(point: point): void;
   remove(): void;
 }
+
+// 形状
+export type shapeType = point[];

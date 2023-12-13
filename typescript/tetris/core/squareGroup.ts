@@ -5,22 +5,18 @@
  * 移动
  */
 
-import { point } from "../types/types";
+import { point, shapeType } from "../types/types";
 import { Squares } from "./squares";
 import { PageSquareViewer } from "./viewer/pageSquareViewer";
 
 export class SquareGroup {
-  private _shape: point[] = [
-    { x: -1, y: 0 },
-    { x: 0, y: 0 },
-    { x: 0, y: -1 },
-    { x: 1, y: 0 },
-  ];
-  private _centerPoint: point = { x: 2, y: 2 };
   private _squareGroup?: readonly Squares[];
-  private _color: string = "rgb(117,117,0)";
 
-  constructor() {
+  constructor(
+    private _shape: shapeType,
+    private _centerPoint: point,
+    private _color: string
+  ) {
     this.init();
   }
 
