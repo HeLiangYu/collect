@@ -1,30 +1,21 @@
-import { SquareGroup } from "./core/squareGroup";
-import { Squares } from "./core/squares";
-import { getShape } from "./core/tetris";
-import { PageSquareViewer } from "./core/viewer/pageSquareViewer";
+import { Game } from "./core/game";
+import { GameViewer } from "./core/viewer/pageGameViewer";
 import $ from "jquery";
 
-const shapeConfig = getShape();
-console.log(shapeConfig);
+const game = new Game(new GameViewer());
 
-const shape = new SquareGroup(
-  shapeConfig.shape,
-  { x: 1, y: 1 },
-  shapeConfig.color
-);
-
-$("#up").on("click", function () {
-  shape.centerPoint = { x: shape.centerPoint.x, y: shape.centerPoint.y - 1 };
+$("#rotate").on("click", function () {
+  game.currentShape.rotate();
 });
 
 $("#down").on("click", function () {
-  shape.centerPoint = { x: shape.centerPoint.x, y: shape.centerPoint.y + 1 };
+  game.moveDown();
 });
 
 $("#left").on("click", function () {
-  shape.centerPoint = { x: shape.centerPoint.x - 1, y: shape.centerPoint.y };
+  game.moveLeft();
 });
 
 $("#right").on("click", function () {
-  shape.centerPoint = { x: shape.centerPoint.x + 1, y: shape.centerPoint.y };
+  game.moveRight();
 });

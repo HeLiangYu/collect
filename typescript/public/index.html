@@ -5,6 +5,10 @@
     <title>Document</title>
 
     <style>
+        .content {
+            display: flex;
+            margin-top: 20px;
+        }
         #game{
             width: 300px;
             height: 300px;
@@ -12,15 +16,26 @@
             position: relative;
             /* background-color: #000; */
         }
+        #prepare{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+            position: relative;
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
-    <div id="game"></div>
+    <div class="content">
+        <div id="game"></div>
+        <div id="prepare"></div>
+    </div>
     <div id="btn-group">
         <button id="up">向上</button>
         <button id="down">向下</button>
         <button id="left">向左</button>
         <button id="right">向右</button>
+        <button id="rotate">旋转</button>
     </div>
 </body>
 </html>

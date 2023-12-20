@@ -13,9 +13,7 @@ export class Squares {
   set point(val: point) {
     this._point = val;
 
-    if (this._viewer) {
-      this._viewer.show();
-    }
+    this._viewer?.show();
   }
 
   get point() {

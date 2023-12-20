@@ -4,10 +4,9 @@ import $ from "jquery";
 import { Squares } from "../squares";
 
 export class PageSquareViewer implements squareViewer {
-  private _wrap: JQuery<HTMLElement> = $("#game");
   private _dom?: JQuery<HTMLElement>;
 
-  constructor(private square: Squares) {
+  constructor(private square: Squares, private _wrap: JQuery<HTMLElement>) {
     this.show();
   }
 
@@ -31,6 +30,6 @@ export class PageSquareViewer implements squareViewer {
     });
   }
   remove(): void {
-    throw new Error("Method not implemented.");
+    this._dom?.remove();
   }
 }

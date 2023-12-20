@@ -6,11 +6,13 @@
  */
 
 import { point, shapeType } from "../types/types";
+import { Rules } from "./rules";
 import { Squares } from "./squares";
+import { getShape } from "./tetris";
 import { PageSquareViewer } from "./viewer/pageSquareViewer";
 
 export class SquareGroup {
-  private _squareGroup?: readonly Squares[];
+  private _squareGroup!: readonly Squares[];
 
   constructor(
     private _shape: shapeType,
@@ -18,21 +20,6 @@ export class SquareGroup {
     private _color: string
   ) {
     this.init();
-  }
-
-  /**
-   * 移动
-   * @param centerPoint
-   */
-  private move() {
-    this.shape.forEach((p, index) => {
-      if (this._squareGroup) {
-        this._squareGroup[index].point = {
-          x: p.x + this.centerPoint.x,
-          y: p.y + this.centerPoint.y,
-        };
-      }
-    });
   }
 
   /**
@@ -49,13 +36,10 @@ export class SquareGroup {
         },
         this._color
       );
-      const viewer = new PageSquareViewer(square);
-
-      square.viewer = viewer;
-
       arr.push(square);
     });
 
+    this.centerPoint = this._centerPoint;
     this._squareGroup = arr;
   }
 
@@ -69,6 +53,61 @@ export class SquareGroup {
 
   set centerPoint(centerPoint: point) {
     this._centerPoint = centerPoint;
-    this.move();
+
+    this.shape.forEach((p, index) => {
+      if (this._squareGroup) {
+        this._squareGroup[index].point = {
+          x: p.x + this.centerPoint.x,
+          y: p.y + this.centerPoint.y,
+        };
+      }
+    });
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  get squareGroup() {
+    return this._squareGroup;
+  }
+
+  /**
+   * 向下移动
+   */
+  moveDown() {
+    this.centerPoint = { x: this.centerPoint.x, y: this.centerPoint.y + 1 };
+  }
+
+  /**
+   * 向左移动
+   */
+  moveLeft() {
+    this.centerPoint = { x: this.centerPoint.x - 1, y: this.centerPoint.y };
+  }
+
+  /**
+   * 向右移动
+   */
+  moveRight() {
+    this.centerPoint = { x: this.centerPoint.x + 1, y: this.centerPoint.y };
+  }
+
+  /**
+   * 旋转
+   */
+  rotate() {
+    const newShape = this.shape.map((p) => ({
+      x: p.y,
+      y: p.x,
+    }));
+
+    this._shape = newShape;
+    newShape.forEach((p, index) => {
+      this.squareGroup[index].point = {
+        x: this.centerPoint.x + p.x,
+        y: this.centerPoint.y + p.y,
+      };
+    });
   }
 }

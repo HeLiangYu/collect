@@ -1,5 +1,6 @@
-import { shapeType } from "../types/types";
+import { point, shapeType } from "../types/types";
 import { getRandom } from "../untils/index";
+import { SquareGroup } from "./squareGroup";
 
 /**
  * 生成俄罗斯方块
@@ -52,7 +53,8 @@ export const lShape: shapeType = [
   { x: 1, y: 0 },
 ];
 
-export const shapeList = [lineShape, hillShape, fieldShape, zShape, lShape];
+export const shapeList = [fieldShape];
+// export const shapeList = [lineShape, hillShape, fieldShape, zShape, lShape];
 
 /**
  * 颜色
@@ -68,12 +70,12 @@ export const colorList = [
 /**
  * 生成随机方块
  */
-export const getShape = () => {
+export const getShape = (point: point) => {
   const shapeRandom = getRandom(0, shapeList.length - 1);
   const colorRandom = getRandom(0, colorList.length - 1);
 
-  return {
-    shape: shapeList[shapeRandom],
-    color: colorList[colorRandom],
-  };
+  const shape = shapeList[shapeRandom];
+  const color = colorList[colorRandom];
+
+  return new SquareGroup(shape, point, color);
 };
