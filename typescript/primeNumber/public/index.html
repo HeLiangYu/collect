@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字查找</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            position: relative;
+            height: 100vh;
+            cursor: pointer;
+            color: #fff;
+            background-color: #000;
+        }
+
+        #panel{
+            width: 100%;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        #panel > span{
+            display: inline-block;
+            width: 40px;
+        }
+
+        .center{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            transition: all 1s, opacity 0.3s 0.7s;
+        }
+    </style>
+</head>
+<body>
+    <div id="panel">
+    </div>
+    <div id="big" class="center"></div>
+</body>
+</html>

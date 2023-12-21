@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode=development"
+    "dev": "webpack-dev-server --mode=development",
+    "buildPrime": "webpack --mode=production --env project=primeNumber",
+    "devPrime": "webpack-dev-server --mode=development --env project=primeNumber"
   },
   "keywords": [],
   "author": "",
